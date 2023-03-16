@@ -8,18 +8,33 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
     const root = document.querySelector("#root");
-    //-- Container Component
-    //-- State를 통한 Rerendering - setCounter
     function App() {
-      const [counter, setCounter] = React.useState(0);
-      const onClick = () => {
-        // setCounter(counter + 1);
-        setCounter((current) => current + 1);
+      const [minutes, setMinutes] = React.useState(0);
+      const onChange = (event) => {
+        setMinutes(event.target.value);
       };
       return (
         <div>
-          <h3>Total clicks: {counter}</h3>
-          <button onClick={onClick}>Click me</button>
+          <h1>Super Converter</h1>
+          <div>
+            <label htmlFor="minutes">Minutes</label>
+            <input
+              value={minutes}
+              id="minutes"
+              placeholder="Minutes"
+              type="number"
+              onChange={onChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="hours">Hours</label>
+            <input
+              value={Math.round(minutes / 60)}
+              id="hours"
+              placeholder="Hours"
+              type="number"
+            />
+          </div>
         </div>
       );
     }
